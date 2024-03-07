@@ -1,0 +1,156 @@
+/*! SVG Türkiye Haritası | CSS | MIT Lisans | dnomak.com */
+
+*{
+    box-sizing: border-box;
+  }
+  
+  body{
+    /* background-color: rgb(212, 210, 222); */
+    /* background-color: #151515; */
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: #111111;
+    background-image: linear-gradient(
+      32deg,
+      rgba(8, 8, 8, 0.74) 30px,
+      transparent
+    );
+    background-size: 60px 60px;
+    background-position: -5px -5px;
+  }
+  
+  
+  .svg-turkiye-haritasi {
+    max-width: 1140px;
+    margin: 20px auto 0;
+    text-align: center;
+  }
+  .svg-turkiye-haritasi svg {
+    width: 100%;
+    height: auto;
+  }
+  .il-isimleri {
+    position: absolute;
+    z-index: 2;
+  }
+  .il-isimleri div {
+    font-family: 'Open Sans';
+    display: inline-block;
+    background: #E3CCAE;
+    color: #000;
+    border: 1px solid #000000;
+    padding: 8px 16px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+  #svg-turkiye-haritasi path {
+    cursor: pointer;
+    fill: #F99417;
+  }
+  #svg-turkiye-haritasi path:hover {
+    fill: #E3CCAE;
+  }
+  #guney-kibris {
+    pointer-events: none;
+  }
+  
+  
+  .container{
+    width: 100%;
+    padding: 0 15% 40px;
+  }
+  
+  .container .box{
+    background-color: #151515;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+  
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .container .box .il{
+    position: relative;
+    flex-grow: 1;
+    width: calc(50% - 10px);
+    background-color: #0b1d59;
+    color: #e2ddef;
+    padding: 20px 20px 70px;
+    border-radius: 10px;
+  }
+  
+  .container .box .il h1{
+    margin: 0 0 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #121212;
+  }
+  
+  .container .box .il .person{
+    margin: 0 0 10px 0;
+    padding: 6px;
+    font-size: 22px;
+    border-radius: 5px;
+    background-color: #e2ddef;
+    color: #151515;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .container .box .il .add{
+    position: absolute;
+    display: inline;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #4ab432;
+    color: #e2ddef;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    right: 20px;
+    bottom: 20px;
+  }
+  
+  
+  
+  
+  .bin-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 15px;
+    background-color: rgb(255, 95, 95);
+    cursor: pointer;
+    border: 3px solid rgb(255, 201, 201);
+    transition-duration: 0.3s;
+  }
+  .bin-bottom {
+    width: 9px;
+  }
+  .bin-top {
+    width: 10px;
+    transform-origin: right;
+    transition-duration: 0.3s;
+  }
+  .bin-button:hover .bin-top {
+    transform: rotate(45deg);
+  }
+  .bin-button:hover {
+    background-color: rgb(255, 0, 0);
+  }
+  .bin-button:active {
+    transform: scale(0.9);
+  }
+  
+  
+  
