@@ -1,0 +1,820 @@
+/*! SVG Türkiye Haritası | CSS | MIT Lisans | dnomak.com */
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+margin: 0;
+padding: 0;
+font-family: "Open Sans";
+width: 100%;
+height: 100%;
+background-color: #111111;
+background-image: linear-gradient(
+  32deg,
+  rgba(8, 8, 8, 0.74) 30px,
+  transparent
+);
+background-size: 60px 60px;
+background-position: -5px -5px;
+}
+
+.svg-turkiye-haritasi {
+max-width: 1140px;
+margin: 20px auto 0;
+text-align: center;
+}
+.svg-turkiye-haritasi svg {
+width: 100%;
+height: auto;
+}
+.il-isimleri {
+position: absolute;
+z-index: 10;
+}
+.il-isimleri div {
+font-family: 'Open Sans';
+display: inline-block;
+background: #E3CCAE;
+color: #000;
+border: 1px solid #000000;
+padding: 8px 16px;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+#svg-turkiye-haritasi path {
+cursor: pointer;
+fill: #F99417;
+}
+#svg-turkiye-haritasi path:hover {
+fill: #E3CCAE;
+}
+#guney-kibris {
+pointer-events: none;
+}
+
+
+.container {
+padding: 0 15px 25px;
+margin-left: auto;
+margin-right: auto;
+}
+
+/*Mobile*/
+@media (max-width: 767px) {
+.container {
+    padding: 0 20px 25px;
+}
+}
+
+/*small*/
+@media (min-width: 768px) {
+.container {
+    width: 750px;
+}
+}
+
+/*medium*/
+@media (min-width: 992px) {
+.container {
+    width: 970px;
+}
+}
+
+/*large*/
+@media (min-width: 1200px) {
+.container {
+    width: 1170px;
+}
+}
+
+
+.container .box{
+background-color: #151515;
+width: 100%;
+border-radius: 5px;
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+}
+
+.container .box .il{
+position: relative;
+flex-grow: 1;
+/* min-width: 340px; */
+width: 100%;
+background-color: #0b1d59;
+color: #e2ddef;
+padding: 20px 20px 70px;
+border-radius: 10px;
+}
+/* 
+@media ((min-width: 1400px)) {
+.container .box .il{
+  width: calc(50% - 10px);
+}
+
+.container .box{
+  flex-direction: row;
+}
+} */
+
+@media (max-width: 767px) {
+.container .box .il h1{
+  font-size: 26px;
+}
+}
+
+.container .box .il h1{
+margin: 0 0 15px;
+padding-bottom: 15px;
+border-bottom: 2px solid #121212;
+}
+
+.container .box .il .person-list{
+display: grid;
+gap: 10px;
+}
+
+@media (min-width: 767px) {
+.container .box .il .person-list{
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  
+}
+}
+
+.container .box .il .person{
+display: grid;
+/* grid-template-columns: repeat(auto-fill, minmax(calc(100% - 50px), 1fr)); */
+/* grid-template-columns: repeat(8, 1fr); */
+grid-template-columns: 1fr 47px;
+row-gap: 4px;
+column-gap: 8px;
+padding: 10px 10px 15px;
+font-size: 20px;
+border-radius: 6px;
+background-color: #e2ddef;
+color: #151515;
+}
+
+
+@media (max-width: 767px) {
+.container .box .il .person span{
+  font-size: 18px;
+}
+}
+
+.container .box .il .person span:first-child{
+grid-column: span 1;
+/* width: calc(100% - 54px); */
+height: fit-content;
+text-align: center;
+color: #0b1d59;
+font-weight: bold;
+font-size: 20px;
+border: 2px #0b1d59 solid;
+padding: 8px 10px;
+border-radius: 25px;
+margin-bottom: 5px;
+}
+
+.container .box .il .person span:nth-child(n+2){
+grid-column: span 2;
+}
+
+.noteDiv{
+position: relative;
+grid-column: span 2;
+border: 2px #9abdbd6b solid;
+background-color: #9abdbd30;
+padding: 8px 42px 8px 10px;
+border-radius: 5px;
+font-size: 16px;
+color: #082e3789;
+min-height: 48px;
+}
+
+.noteDiv::before{
+content: "Not";
+height: 100%;
+position: absolute;
+writing-mode: vertical-rl;
+text-align: center;
+background-color: #9abdbd70;
+padding: 0 10px 0;
+top: 0;
+right: 0;
+border-radius: 5px;
+font-size: 16px;
+color: #516664a9;
+}
+
+.container .box .il .addBtn{
+position: absolute;
+display: inline;
+padding: 10px;
+font-size: 18px;
+background-color: #5db440;
+color: #e2ddef;
+border-radius: 10px;
+border: none;
+outline: none;
+margin-top: 10px;
+right: 20px;
+bottom: 20px;
+transition: 0.2s;
+}
+
+
+.promptBackground {
+position: fixed;
+width: 100%; 
+height: 100vh; 
+z-index: 10; 
+opacity: 0.9; 
+background: rgba(29, 31, 32, 0.904) radial-gradient(rgba(255, 255, 255, 0.712) 10%, transparent 1%); 
+background-size: 11px 11px;
+}
+
+
+.myPromptMainDiv {
+font-size: 17px;
+padding: 30px;
+position: fixed;
+width: 450px;
+left: 50%;
+transform: translateX(-50%);
+background-color: #e2ddef;
+border-radius: 5px;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+z-index: 1000;
+border: 3px solid #121212;
+animation: come 0.8s forwards;
+}
+
+@keyframes come {
+from {
+  opacity: 0;
+  top: -70px;
+}
+
+to {
+  opacity: 100%;
+  top: 60px;
+}
+}
+
+@keyframes goAway {
+from {
+  opacity: 100%;
+  top: 60px; 
+}
+
+to {
+  opacity: 0;
+  top: -70px; 
+}
+}
+
+@media (max-width: 767px) {
+.myPromptMainDiv {
+  top: 20px;
+  width: calc(100% - 20px);
+}
+
+@keyframes come {
+  from {
+    opacity: 0;
+    top: -70px;
+  }
+
+  to {
+    opacity: 100%;
+    top: 20px;
+  }
+}
+
+@keyframes goAway {
+  from {
+    opacity: 100%;
+    top: 20px; 
+  }
+
+  to {
+    opacity: 0;
+    top: -70px; 
+  }
+}
+}
+
+@media (min-width: 768px) {
+.myPromptMainDiv {
+  top: 30px;
+  width: 450px;
+}
+
+@keyframes come {
+  from {
+    opacity: 0;
+    top: -70px;
+  }
+
+  to {
+    opacity: 100%;
+    top: 30px;
+  }
+}
+
+@keyframes goAway {
+  from {
+    opacity: 100%;
+    top: 30px; 
+  }
+
+  to {
+    opacity: 0;
+    top: -70px; 
+  }
+}
+}
+
+@keyframes disappperance {
+from{
+  opacity: 100%;
+}
+
+to{
+  opacity: 0;
+}
+}
+
+
+.myPromptMainDiv .promptSpan{
+margin-bottom: 20px;
+}
+
+.form{
+width: 100%;
+position: relative;
+}
+
+.formSpans{
+position: absolute;
+top: 0;
+left: 0;
+display: flex;
+flex-direction: column;
+gap: 15px;
+
+}
+
+.formSpans > span{
+padding: 8px 0;
+}
+
+.studentForm{
+width: 100%; 
+position: relative; 
+display: flex; 
+flex-direction: column;
+align-items: flex-end;
+gap: 15px;
+}
+
+.studentForm .studentInput {
+display: block;
+
+padding: 10px; 
+border-radius: 6px; 
+width: 65%; 
+}
+/* 
+.studentName{
+padding: 10px; 
+border-radius: 6px; 
+width: 65%; 
+margin: 0 0 10px;
+} */
+
+.studentSubmit{
+align-self: flex-start;
+background-color: #1ea500; 
+color: #e2ddef; 
+padding: 8px 12px; 
+border-radius: 6px; 
+cursor: pointer; 
+border: none; 
+font-size: 16px;
+transition: 0.2s;
+}
+
+
+.formCancle{
+position: absolute; 
+bottom: 0; 
+right: 0; 
+background-color: #334da0; 
+color: #e2ddef; 
+padding: 4px 12px 8px; 
+border-radius: 6px; 
+cursor: pointer;
+transition: 0.2s;
+}
+
+.promptClose{
+position: absolute; 
+top: 10px; 
+right: 10px; 
+background-color: #777; 
+color: #e2ddef; 
+width: 30px;
+height: 30px;
+padding-bottom: 4px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 50%; 
+cursor: pointer;
+font-size: 22px;
+transition: 0.2s;
+
+}
+
+.ilClose{
+padding-bottom: 3px;
+background-color: #151515; 
+color: #e2ddef; 
+position: absolute; 
+top: 20px; 
+right: 20px; 
+border-radius: 50%; 
+width: 40px; 
+height: 40px; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+border: 1px solid #222; 
+font-size: 25px;
+transition: 0.2s;
+}
+
+.confirmBackground{
+position: fixed; 
+width: 100%; 
+height: 100vh; 
+z-index: 10; 
+opacity: 0.9; 
+background: rgba(29, 31, 32, 0.904) radial-gradient(rgba(255, 255, 255, 0.712) 10%, transparent 1%); 
+background-size: 11px 11px;
+}
+
+.myConfirmMainDiv{
+padding: 45px 30px 30px; 
+position: fixed; 
+width: 450px; 
+top: 60px; 
+left: 50%; 
+transform: translateX(-50%); 
+background-color: #e2ddef; 
+border-radius: 5px; 
+display: flex; 
+flex-direction: column; 
+justify-content: space-around; 
+align-items: center; 
+z-index: 1000; 
+border: 2px solid #121212;
+animation: come 0.5s forwards;
+}
+
+
+@media (max-width: 767px) {
+.myConfirmMainDiv{
+  width: 350px;
+  padding: 40px 30px 30px;
+  
+}
+}
+
+.resultDiv{
+width: 100%; 
+display: flex; 
+justify-content: space-around; 
+margin-top: 15px;
+}
+
+.resultYes{
+background-color: #ff4a4a; 
+color: #e2ddef; 
+padding: 8px 12px; 
+border-radius: 6px; 
+cursor: pointer;
+transition: 0.2s;
+}
+
+.resultNo{
+background-color: #334da0; 
+color: #e2ddef; 
+padding: 8px 12px; 
+border-radius: 6px; 
+cursor: pointer;
+transition: 0.2s;
+}
+
+.erorSpan{
+box-sizing: content-box;
+margin-top: 10px;
+padding: 10px;
+color: red;
+}
+
+.confirmClose{
+position: absolute; 
+top: 10px; 
+right: 10px; 
+background-color: #777; 
+color: #e2ddef; 
+border-radius: 50%; 
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 30px;
+height: 30px;
+padding-bottom: 4px;
+font-size: 22px;
+transition: 0.2s;
+}
+
+
+
+.addNotePromptMainDiv{
+font-size: 18px;
+padding: 30px;
+position: fixed;
+width: 450px;
+left: 50%;
+transform: translateX(-50%);
+background-color: #e2ddef;
+border-radius: 5px;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+z-index: 1000;
+border: 3px solid #121212;
+animation: come 0.8s forwards;
+}
+
+@media (max-width: 767px) {
+.addNotePromptMainDiv{
+  width: calc(100% - 28px);
+}
+}
+
+.noteForm{
+position: relative;
+width: 75%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding-top: 10px;
+}
+
+.noteText{
+width: 100%;
+height: 100px;
+font-size: 16px;
+padding: 5px;
+resize: none;
+}
+
+.noteSubmit {
+align-self: flex-start;
+background-color: #1ea500; 
+color: #e2ddef;
+margin-top: 12px;
+padding: 8px 12px; 
+border-radius: 6px; 
+cursor: pointer; 
+border: none; 
+font-size: 16px;
+transition: 0.2s;
+}
+
+
+
+
+.studentsCount{
+z-index: 8;
+position: absolute;
+display: flex; 
+justify-content: center; 
+align-items: center;
+width: 20px;
+height: 20px;
+background-color: #121212;
+color: #F99417;
+font-size: 16px;
+border-radius: 50%; 
+cursor: pointer;
+}
+
+@media (max-width: 767px) {
+.studentsCount{
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  font-size: 6px;
+  font-weight: bold;
+}
+}
+
+
+.btns{
+position: relative;
+width: 47px;
+height: 47px;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+.btnsAbso{
+position: absolute;
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+gap: 4px;
+border-radius: 23px;
+border: 2px #0b1d59 solid;
+cursor: pointer;
+transition: 0.5s;
+overflow: hidden;
+}
+
+.btnsAbso .threePoint{
+width: 43.5px;
+height: 43.5px;
+/* border-radius: 50%; */
+display: flex;
+justify-content: center;
+align-items: center;
+transition: 0.2s;
+}
+
+.threePoint:hover{
+background-color: #c6c3d8;
+outline: 1px solid #000;
+}
+
+.btnsAbso .threePoint > svg{
+
+width: 32px;
+height: 32px;
+}
+
+.btnsAbso > svg path{
+fill: #0b1d59;
+}
+
+
+
+
+
+
+.bin-button {
+position: relative;
+overflow: hidden;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 47px;
+height: 47px;
+border-radius: 23.5px;
+background-color: #000;
+cursor: pointer;
+border: 2px #0b1d59 solid;
+/* border: 3px solid rgb(255, 201, 201); */
+transition: 0.3s;
+display: none;
+color: #e2ddef;
+font-size: 18px;
+}
+
+
+.bin-button svg {
+z-index: 3;
+}
+
+.bin-bottom {
+width: 15px;
+transition: 0.8s;
+}
+.bin-top {
+width: 18px;
+transform-origin: right;
+transition: 0.8s;
+}
+.bin-button:hover .bin-top {
+transform: rotate(45deg) translateX(40px);
+}
+
+.bin-button:hover  .bin-bottom{
+transform:  translateX(40px);
+}
+.bin-button:hover {
+background-color: red;
+border-color: #000;
+width: 90px;
+box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+}
+.bin-button:active {
+transform: scale(0.9);
+}
+
+
+
+
+
+.editBtn {
+width: 45px;
+height: 45px;
+border-radius: 22px;
+border:  2px solid #000;
+background-color: #000;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.123);
+cursor: pointer;
+position: relative;
+overflow: hidden;
+transition: all 0.3s;
+display: none;
+color: #e2ddef;
+font-size: 12px;
+}
+
+.editBtn:hover {
+background-color: #395bcb;
+width: 90px;
+box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+}
+
+.editBtn svg {
+height: 15px;
+fill: #e2ddef;
+z-index: 3;
+}
+
+
+
+
+
+.noteBtn{
+width: 45px;
+height: 45px;
+border-radius: 22px;
+border: 2px solid #000;
+background-color: #000;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.123);
+cursor: pointer;
+position: relative;
+overflow: hidden;
+transition: all 0.3s;
+display: none;
+color: #e2ddef;
+font-size: 11px;
+}
+
+.noteBtn:hover {
+background-color:  #12bb1b;
+width: 90px;
+box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+}
+
+.noteBtn svg {
+height: 15px;
+fill: #e2ddef;
+z-index: 3;
+}
+
+
+
+
