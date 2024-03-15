@@ -20,6 +20,65 @@ background-size: 60px 60px;
 background-position: -5px -5px;
 }
 
+.search-div{
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto 10px;
+  
+}
+
+.search-div .searchBtn{
+  background-color: #f99317b6;
+  width: 45px;
+  height: 45px;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-div .searchBtn:hover{
+  background-color: #ff8c00;
+}
+
+.search-div div svg{
+  fill: #ffffffc9;
+  width: 25px;
+  height: 25px;
+}
+
+.search-div form{
+  background-color: #67503a37;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+
+.search-div form input{
+  padding: 10px;
+  min-width: 300px;
+  border-radius: 3px;
+  border: none;
+}
+
+@media (max-width: 767px)  {
+  .search-div form input{
+    min-width: 200px;
+    padding: 0 5px 0 10px;
+    height: 40px;
+  }
+
+  .search-div form{
+    padding: 10px;
+  }
+}
+
 .svg-turkiye-haritasi {
 max-width: 1140px;
 margin: 20px auto 0;
@@ -395,13 +454,6 @@ padding: 10px;
 border-radius: 6px; 
 width: 65%; 
 }
-/* 
-.studentName{
-padding: 10px; 
-border-radius: 6px; 
-width: 65%; 
-margin: 0 0 10px;
-} */
 
 .studentSubmit{
 align-self: flex-start;
@@ -728,21 +780,24 @@ width: 18px;
 transform-origin: right;
 transition: 0.8s;
 }
-.bin-button:hover .bin-top {
-transform: rotate(45deg) translateX(40px);
+
+
+@media (max-width: 767px) {
+  .bin-button{
+    background-color: red;
+    border-color: #000;
+    width: 90px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+  }
 }
 
-.bin-button:hover  .bin-bottom{
-transform:  translateX(40px);
-}
-.bin-button:hover {
-background-color: red;
-border-color: #000;
-width: 90px;
-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
-}
-.bin-button:active {
-transform: scale(0.9);
+@media (min-width: 767px) {
+  .bin-button:hover{
+    background-color: red;
+    border-color: #000;
+    width: 90px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+  }
 }
 
 
@@ -768,16 +823,36 @@ color: #e2ddef;
 font-size: 12px;
 }
 
+.editBtn svg {
+  height: 15px;
+  fill: #e2ddef;
+  z-index: 3;
+}
+
+
 .editBtn:hover {
 background-color: #395bcb;
 width: 90px;
 box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
 }
 
-.editBtn svg {
-height: 15px;
-fill: #e2ddef;
-z-index: 3;
+
+
+
+@media (max-width: 767px) {
+  .editBtn{
+    background-color: #395bcb;
+    width: 90px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+  }
+}
+
+@media (min-width: 767px) {
+  .editBtn:hover{
+    background-color: #395bcb;
+    width: 90px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+  }
 }
 
 
@@ -803,18 +878,25 @@ color: #e2ddef;
 font-size: 11px;
 }
 
-.noteBtn:hover {
-background-color:  #12bb1b;
-width: 90px;
-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
-}
-
 .noteBtn svg {
-height: 15px;
-fill: #e2ddef;
-z-index: 3;
+  height: 15px;
+  fill: #e2ddef;
+  z-index: 3;
+  }
+
+@media (max-width: 767px) {
+  .noteBtn{
+    background-color:  #12bb1b;
+    width: 90px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+  }
 }
 
-
-
+@media (min-width: 767px) {
+  .noteBtn:hover{
+    background-color:  #12bb1b;
+    width: 90px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+  }
+}
 
