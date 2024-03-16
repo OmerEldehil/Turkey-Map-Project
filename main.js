@@ -12,7 +12,13 @@ class Student {
   }
 }
 
-window.onload = numbersOnCities;
+window.addEventListener("load", function() {
+  numbersOnCities();
+  updateStudentCount();
+  numbersOnCities();
+})
+
+
 window.addEventListener('resize', numbersOnCities);
 
 
@@ -43,7 +49,7 @@ const turkiyeHaritasi = document.querySelector('#svg-turkiye-haritasi');
 turkiyeHaritasi.addEventListener(
   'mouseover',
   function (event) {
-    if (event.target.tagName === 'path') {
+    if (event.target.tagName === 'path' && event.target.parentNode.id !== 'guney-kibris') {
       info.innerHTML = [
         '<div>',
         event.target.parentNode.getAttribute('data-iladi'),
@@ -73,12 +79,12 @@ turkiyeHaritasi.addEventListener(
 document.body.addEventListener(
   "click",
   function (event) {
-    if (event.target.parentElement.parentElement.id === 'turkiye' || event.target.className === 'studentsCount') {
-      if(event.target.parentElement.parentElement.id === 'turkiye') {
+    if (event.target.parentElement.tagName === 'g' || event.target.className === 'studentsCount') {
+      if(event.target.parentElement.tagName === 'g') {
         var clickedCity = event.target.parentElement;
         console.log("event = path")
       } else if(event.target.className === 'studentsCount') {
-        var clickedCity = document.querySelector(`#svg-turkiye-haritasi #turkiye #${event.target.id}`);
+        var clickedCity = document.querySelector(`#svg-turkiye-haritasi #${event.target.id}`);
         console.log(clickedCity);
         console.log("event is studentsCount")
       }
@@ -145,7 +151,14 @@ document.body.addEventListener(
         numbersOnCities();
       }
       il.appendChild(ilCloseBtn);
-      
+
+      window.scrollTo({
+        left: 0,
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+
+      updateStudentCount();
     }
   }
 )
@@ -186,6 +199,33 @@ document.addEventListener('click', function(event) {
   });
 });
 
+
+function updateStudentCount() {
+  let numbersOnCities1 = document.getElementsByClassName("studentsCount") || [];
+
+  let allStudentsCount = 0;
+  let citiesCount = 0;
+  
+  Array.from(numbersOnCities1).forEach((number) => {
+    allStudentsCount += Number(number.innerHTML);
+    citiesCount += 1;
+    console.log(allStudentsCount);
+  })
+  
+  let ogrenciSayisi = document.querySelector(".ogrenci-sayisi");
+  ogrenciSayisi.innerHTML = `Toplam ${citiesCount} İlde<br>${allStudentsCount} Öğrenci Vardır`;
+  // if (window.matchMedia("(min-width: 500px)").matches) {
+  //   ogrenciSayisi.innerHTML = `Toplam ${citiesCount} İlde<br>${allStudentsCount} Öğrenci Vardır`;
+  // } else {
+  //   ogrenciSayisi.innerHTML = `Toplam ${citiesCount} İlde ${allStudentsCount} Öğrenci Vardır`;
+  // }
+  
+  if(allStudentsCount === 0) {
+    ogrenciSayisi.style.visibility = "hidden";
+  } else {
+    ogrenciSayisi.style.visibility = "visible";
+  }
+}
 
 
 function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorValue = "", classValue = "", phoneValue = "", homelandValue = "", updateStudent = false) {
@@ -842,6 +882,7 @@ function updateList(cityId) {
   }
 
   numbersOnCities();
+  updateStudentCount();
 };
 
 
@@ -856,7 +897,7 @@ function numbersOnCities() {
 
 
 
-  let turkiye = document.querySelectorAll("#turkiye > g"); 
+  let turkiye = document.querySelectorAll("#svg-turkiye-haritasi > g > g"); 
   turkiye.forEach((sehir) => {
     var rect = sehir.getBoundingClientRect();
     var x = rect.left + window.scrollX + rect.width / 2;
@@ -897,13 +938,6 @@ function numbersOnCities() {
         function () {
           info.innerHTML = '';
           sehir.firstElementChild.style.fill = "";
-        }
-      );
-
-      studentsCount.addEventListener(
-        'mouseenter', 
-        function() {
-          
         }
       );
   
@@ -1026,6 +1060,9 @@ function numbersOnCities() {
           studentsCount.style.top = `${y - studentsCount.offsetHeight / 2 - 19}px`;
         } else if(sehir.id === "ardahan") {
           studentsCount.style.top = `${y - studentsCount.offsetHeight / 2 - 5}px`;
+          studentsCount.style.left = `${x - studentsCount.offsetWidth / 2 - 12}px`;
+        } else if(sehir.id === "kuzey-kibris") {
+          studentsCount.style.top = `${y - studentsCount.offsetHeight / 2}px`;
           studentsCount.style.left = `${x - studentsCount.offsetWidth / 2 - 12}px`;
         }
       }else if (window.matchMedia("(max-width: 768px)").matches) {
