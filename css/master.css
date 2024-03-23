@@ -1,4 +1,3 @@
-/*! SVG Türkiye Haritası | CSS | MIT Lisans | dnomak.com */
 
 *{
   box-sizing: border-box;
@@ -9,21 +8,255 @@ html {
 }
 
 body{
+position: relative;
 margin: 0;
 padding: 0;
 font-family: "Open Sans";
-width: 100%;
-height: 100%;
-background-color: #111111;
-background-image: linear-gradient(
-  32deg,
-  rgba(8, 8, 8, 0.74) 30px,
-  transparent
-);
-background-size: 60px 60px;
-background-position: -5px -5px;
+background-image: url("../images/dark_mosaic.png");
+
+
+
 }
 
+footer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ff99134d;
+  box-shadow: 10px 0 15px 8px #ab794e2e;
+}
+
+@media (max-width: 767px) {
+  footer{
+    flex-direction: row-reverse;
+    box-shadow: 8px 0 12px 5px #ab794e30;
+  }
+}
+
+footer .logo-side{
+  
+}
+
+footer .logo-side span{
+  color: rgb(0, 0, 0);
+}
+
+
+@media (min-width: 768px) {
+  footer .logo-side .logo{
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    background-image: linear-gradient(135deg, #ffc47c, #ff9b2093, #4d3a0638);
+  }
+
+
+  footer .links-side .links{
+    height: 100%;
+    padding-right: 50px;
+  }
+  footer .links-side .links-side-content .close{
+    display: none;
+  }
+
+  footer .links-side .links ul{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+    
+  footer .links-side .links ul li a{
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 12px;
+    transition: 0.2s;
+  }
+
+  footer .links-side .links ul li a:hover{
+    background-color: #93816d3a;
+  }
+
+  footer .links-side .links ul a svg {
+    display: none;
+  }
+
+  footer .links-side .bars{
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  footer .logo-side span {
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 8px;
+    background-image: linear-gradient(135deg, #ffc47c, #ff9b2093, #4d3a0638);
+  }
+
+  footer .links-side .links-side-content{
+    position: absolute;
+    top: 0;
+    left: -180px;
+    width: 180px;
+    height: 100vh;
+    background-color: #0b1d59fc;
+    padding: 10px 14px;
+    transition: 0.3s;
+    z-index: 5;
+  }
+    
+  footer .links-side .links-side-content .close{
+    text-align: right;
+    
+  }
+    
+  footer .links-side .links-side-content .close svg{
+    fill: red;
+    width: 40px;
+    padding: 5px;
+  }
+    
+  footer .links-side .links-side-content .close{
+    
+  }
+
+  footer .links-side .links ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  footer .links-side .links ul li {
+    
+  }
+
+  footer .links-side .links ul li a {
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+
+  footer .links-side .links ul li a svg{
+    fill: white;
+    width: 25px;
+  }
+
+  footer .links-side .links ul li a span{
+    padding-top: 3px;
+  }
+
+
+
+  footer .links-side .bars{
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+  footer .links-side .bars svg{
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+  }
+}
+
+footer .links-side .links ul li{
+
+}
+
+
+
+footer .links-side .links ul li a span{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.sidebar{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.sidebar-content{
+  position: relative;
+}
+.sidebar-content .bars{
+  padding: 20px;
+
+}
+.sidebar-content .bars svg{
+  fill: white;
+  width: 30px;
+}
+
+.sidebar-content .sidebar-info{
+  position: absolute;
+  width: 200px;
+  height: 100vh;
+  background-color: #0b1d59;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.sidebar-content .sidebar-info .links{
+  padding: 50px 20px;
+}
+.sidebar-content .sidebar-info .links ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+.sidebar-content .sidebar-info .links ul li{
+
+}
+.sidebar-content .sidebar-info .links ul li a{
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sidebar-content .sidebar-info .links ul li a svg{
+  fill: white;
+  width: 30px;
+}
+
+.sidebar-content .sidebar-info .links ul li a span {
+
+} */
+
+
+
+/* 
 .ogrenci-sayisi{
   position: relative;
   color: #fff;
@@ -47,20 +280,20 @@ background-position: -5px -5px;
   background-color: #67503a37;
   border-radius: 10px;
 
-}
+} */
 
 .search-div{
   width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px auto 10px;
+  
   
 }
 
 .search-div form{
   background-color: #67503a37;
-  padding: 15px;
+  padding: 12px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -100,6 +333,7 @@ background-position: -5px -5px;
   height: 40px;
 }
 
+
 @media (max-width: 500px)  {
   .search-div {
     gap: 12px;
@@ -113,7 +347,7 @@ background-position: -5px -5px;
   }
 
   .search-div form{
-    padding: 10px;
+    padding: 8px;
     gap: 4px;
   }
 
@@ -148,7 +382,7 @@ background-position: -5px -5px;
 .svg-turkiye-haritasi {
 position: relative;
 max-width: 1140px;
-margin: 20px auto 0;
+margin: 0 auto;
 text-align: center;
 }
 .svg-turkiye-haritasi svg {
@@ -172,11 +406,23 @@ border-radius: 4px;
 }
 #svg-turkiye-haritasi path {
 cursor: pointer;
-fill: #F99417;
+/* fill: #F99417; */
 }
-#svg-turkiye-haritasi path:hover {
+#svg-turkiye-haritasi g[data-vakif="var"] path{
+  fill: #BF9742;
+}
+#svg-turkiye-haritasi g[data-vakif="var"] path:hover{
+  fill: #E3CCAE;
+}
+#svg-turkiye-haritasi g[data-vakif="yok"] path{
+  fill: #F99417;
+}
+#svg-turkiye-haritasi g[data-vakif="yok"] path:hover{
+  fill: #E3CCAE;
+}
+/* #svg-turkiye-haritasi path:hover {
 fill: #E3CCAE;
-}
+} */
 #guney-kibris {
 pointer-events: none;
 }
@@ -231,23 +477,13 @@ justify-content: center;
 .container .box .il{
 position: relative;
 flex-grow: 1;
-/* min-width: 340px; */
 width: 100%;
 background-color: #0b1d59;
 color: #e2ddef;
-padding: 20px 20px 70px;
+padding: 20px;
 border-radius: 10px;
 }
-/* 
-@media ((min-width: 1400px)) {
-.container .box .il{
-  width: calc(50% - 10px);
-}
 
-.container .box{
-  flex-direction: row;
-}
-} */
 
 @media (max-width: 767px) {
 .container .box .il h1{
@@ -275,10 +511,8 @@ gap: 10px;
 
 .container .box .il .person{
 display: grid;
-/* grid-template-columns: repeat(auto-fill, minmax(calc(100% - 50px), 1fr)); */
-/* grid-template-columns: repeat(8, 1fr); */
 grid-template-columns: 1fr 47px;
-row-gap: 4px;
+/* row-gap: 4px; */
 column-gap: 8px;
 padding: 10px 10px 15px;
 font-size: 20px;
@@ -294,9 +528,9 @@ color: #151515;
 }
 }
 
+
 .container .box .il .person span:first-child{
 grid-column: span 1;
-/* width: calc(100% - 54px); */
 height: fit-content;
 text-align: center;
 color: #0b1d59;
@@ -310,6 +544,15 @@ margin-bottom: 5px;
 
 .container .box .il .person span:nth-child(n+2){
 grid-column: span 2;
+font-family: "Open Sans";
+}
+
+.container .box .il .person span:nth-child(n+2):not(:last-child) {
+  border-bottom: 1px solid #4e4a663e;
+  padding: 8px 0;
+}
+.container .box .il .person span:last-child {
+  padding-top: 8px;
 }
 
 .noteDiv{
@@ -339,21 +582,88 @@ font-size: 16px;
 color: #516664a9;
 }
 
-.container .box .il .addBtn{
-position: absolute;
-display: inline;
-padding: 10px;
-font-size: 18px;
-background-color: #5db440;
-color: #e2ddef;
-border-radius: 10px;
-border: none;
-outline: none;
-margin-top: 10px;
-right: 20px;
-bottom: 20px;
-transition: 0.2s;
+
+/* Start Add Button */
+.addBtn{
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #34974d;
+  background-color: #3aa856;
+  border-radius: 4px;
+  margin: 20px 0 0 auto;
 }
+
+.addBtn, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.addBtn .button__text {
+  transform: translateX(15px);
+  color: #e2ddef;
+  font-weight: 550;
+}
+
+.addBtn .button__icon {
+  position: absolute;
+  transform: translateX(103px);
+  height: 100%;
+  width: 39px;
+  background-color: #34974d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.addBtn .svg {
+  width: 30px;
+  stroke: #fff;
+}
+
+.addBtn:hover {
+  background: #34974d;
+}
+
+.addBtn:hover .button__text {
+  color: transparent;
+}
+
+.addBtn:hover .button__icon {
+  width: 97%;
+  transform: translateX(0);
+}
+
+.addBtn:active .button__icon {
+  background-color: #2e8644;
+}
+
+.addBtn:active {
+  border: 1px solid #2e8644;
+}
+/* End Add Button */
+
+
+.ilClose{
+  position: absolute; 
+  background-color: #151515; 
+  top: 20px; 
+  right: 20px; 
+  border-radius: 50%; 
+  width: 40px; 
+  height: 40px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  border: 1px solid #222; 
+  font-size: 25px;
+  transition: 0.2s;
+  }
+
+
 
 
 .promptBackground {
@@ -372,6 +682,8 @@ font-size: 17px;
 padding: 30px;
 position: fixed;
 width: 450px;
+height: fit-content;
+max-height: calc(100vh - 30px);
 left: 50%;
 transform: translateX(-50%);
 background-color: #e2ddef;
@@ -409,7 +721,7 @@ to {
 }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 520px) {
 .myPromptMainDiv {
   top: 20px;
   width: calc(100% - 20px);
@@ -491,35 +803,61 @@ width: 100%;
 position: relative;
 }
 
-.formSpans{
-position: absolute;
-top: 0;
-left: 0;
-display: flex;
-flex-direction: column;
-gap: 15px;
-
-}
-
-.formSpans > span{
-padding: 8px 0;
-}
 
 .studentForm{
 width: 100%; 
 position: relative; 
 display: flex; 
 flex-direction: column;
-align-items: flex-end;
-gap: 15px;
+gap: 12.78px;
+z-index: 3;
+}
+
+.studentForm .studentInputDiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .studentForm .studentInput {
-display: block;
-
 padding: 10px; 
 border-radius: 6px; 
-width: 65%; 
+
+}
+@media (min-width: 481px) {
+  .studentForm .studentInputDiv .studentInput {
+    width: 65%;
+  }
+  .studentForm .studentInputDiv label {
+    width: 35%;
+  }
+}
+@media (max-width: 480px) {
+  .studentForm .studentInputDiv:nth-child(-n+6) .studentInput {
+    width: 65%;
+  }
+  .studentForm .studentInputDiv:nth-child(n+7) .studentInput {
+    width: calc(100% - 135px);
+  }
+  .studentForm .studentInputDiv:nth-child(n+7) label {
+    width: 130px;
+  }
+}
+
+@media (max-width: 360px) {
+  .studentForm .studentInputDiv label {
+    font-size: 15px;
+  }
+}
+
+.studentForm .studentInputDiv:nth-child(4) .studentInput,
+.studentForm .studentInputDiv:nth-child(7) .studentInput,
+.studentForm .studentInputDiv:nth-child(8) .studentInput,
+.studentForm .studentInputDiv:nth-child(9) .studentInput {
+  border-top: 2px solid #000;
+  border-left: 2px solid #000;
+  border-right: 2px solid #777;
+  border-bottom: 2px solid #777;
 }
 
 .studentSubmit{
@@ -566,23 +904,6 @@ transition: 0.2s;
 
 }
 
-.ilClose{
-padding-bottom: 3px;
-background-color: #151515; 
-color: #e2ddef; 
-position: absolute; 
-top: 20px; 
-right: 20px; 
-border-radius: 50%; 
-width: 40px; 
-height: 40px; 
-display: flex; 
-justify-content: center; 
-align-items: center; 
-border: 1px solid #222; 
-font-size: 25px;
-transition: 0.2s;
-}
 
 .confirmBackground{
 position: fixed; 
