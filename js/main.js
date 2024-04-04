@@ -10,10 +10,33 @@
 //   })
 //   .catch(error => console.error('Error fetching data:', error));
 
+let aElement = document.querySelectorAll("ul a");
+aElement.forEach(element => {
+  element.addEventListener("click", function() {
+    aElement.forEach(a => {
+      a.classList.remove("active");
+      this.classList.add("active");
+    });
+  })
+})
+
+let iller = document.querySelectorAll("#svg-turkiye-haritasi g g");
+
+let merkezlerInformation = JSON.parse(window.localStorage.getItem("merkezlerInformation")) || [{key: "vakiflar", value: []}, {key: "temsilcilikler", value: []}, {key: "kulupler", value: []}];
+
+iller.forEach(city => {
+  if(merkezlerInformation[0].value.includes(city.id)) {
+    city.setAttribute("data-vakif", "var");
+  } else if (merkezlerInformation[1].value.includes(city.id)) {
+    city.setAttribute("data-temsilcilik", "var");
+  } else if (merkezlerInformation[2].value.includes(city.id)) {
+    city.setAttribute("data-culup", "var");
+  }
+})
 
 
 class Student {
-  constructor(name, university, major, hisClass, phone, homeland, gencDavetci, burs, nerede, note = "") {
+  constructor(name, university, major, hisClass, phone, homeland, gencDavetci, burs, note = "") {
     this.name = name;
     this.university = university;
     this.major = major;
@@ -22,7 +45,6 @@ class Student {
     this.homeland = homeland;
     this.gencDavetci = gencDavetci;
     this.burs = burs;
-    this.nerede = nerede;
     this.note = note;
   }
 }
@@ -215,29 +237,7 @@ document.addEventListener('click', function(event) {
 });
 
 
-// function updateStudentCount() {
-//   let numbersOnCities1 = document.getElementsByClassName("studentsCount") || [];
-
-//   let allStudentsCount = 0;
-//   let citiesCount = 0;
-  
-//   Array.from(numbersOnCities1).forEach((number) => {
-//     allStudentsCount += Number(number.innerHTML);
-//     citiesCount += 1;
-//   })
-  
-//   let ogrenciSayisi = document.querySelector(".ogrenci-sayisi");
-//   ogrenciSayisi.innerHTML = `Toplam ${citiesCount} İlde<br>${allStudentsCount} Öğrenci Vardır`;
-  
-//   if(allStudentsCount === 0) {
-//     ogrenciSayisi.style.visibility = "hidden";
-//   } else {
-//     ogrenciSayisi.style.visibility = "visible";
-//   }
-// }
-
-
-function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorValue = "", classValue = "", phoneValue = "", homelandValue = "", gencDavetciValue = "", bursValue = "", neredeValue = "", updateStudent = false) {
+function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorValue = "", classValue = "", phoneValue = "", homelandValue = "", gencDavetciValue = "", bursValue = "",  updateStudent = false) {
   let promptBackground = document.createElement("div");
   promptBackground.classList.add("promptBackground");
   document.body.prepend(promptBackground);
@@ -296,44 +296,77 @@ function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorVal
   studentUniversity.setAttribute("list","studentUniversityList");
   studentUniversity.placeholder = "Öğrencinin Üniversitesi";
   studentUniversity.value = universityValue;
+  studentUniversity.onkeyup = function() {
+    if(!this.value.endsWith(" ")) {
+      this.value = capitalizeFirstLetters(this.value);
+    }
+  }
   studentUniversityDiv.appendChild(studentUniversity);
   
 
   let studentUniversityDataList = document.createElement("datalist");
   studentUniversityDataList.id = "studentUniversityList";
-
+  
   const allUniversities = 
   [
+    "Abdullah Gül Üniversitesi",
+    "Acıbadem Üniversitesi",
+    "Adana Alparslan Türkeş Bilim Teknoloji Üniversitesi",
+    "Adıyaman Üniversitesi",
     "Adnan Menderes Üniversitesi",
     "Ahi Evran Üniversitesi",
+    "Ağrı İbrahim Çeçen Üniversitesi",
     "Akdeniz Üniversitesi",
+    "Aksaray Üniversitesi",
+    "Alanya Alaaddin Keykubat Üniversitesi",
+    "Alanya Hamdullah Emin Paşa Üniversitesi",
+    "Amasya Üniversitesi",
     "Anadolu Üniversitesi",
+    "Antalya Bilim Üniversitesi",
+    "Ankara Bilim Üniversitesi",
+    "Ankara Medipol Üniversitesi",
     "Ankara Üniversitesi",
-    "İstanbul Arel Üniversitesi",
+    "Ankara Sosyal Bilimler Üniversitesi",
+    "Ankara Yıldirım Beyazit Üniversitesi",
+    "Ardahan Üniversitesi",
+    "Artvin Çoruh Üniversitesi",
     "Atatürk Üniversitesi",
     "Atılım Üniversitesi",
+    "Avrasya Üniversitesi",
     "Bahçeşehir Üniversitesi",
     "Balıkesir Üniversitesi",
+    "Bandırma Onyedi Eylül Üniversitesi",
+    "Bartın Üniversitesi",
     "Başkent Üniversitesi",
-    "Celal Bayar Üniversitesi",
-    "Beykent Üniversitesi",
+    "Batman Üniversitesi",
+    "Bayburt Üniversitesi",
+    "Bezmialem Vakıf Üniversitesi",
+    "Biruni Üniversitesi",
     "Bilecik Üniversitesi",
-    "İstanbul Bilgi Üniversitesi",
     "Bilkent Üniversitesi",
+    "Bingol Üniversitesi",
+    "Bitlis Eren Üniversitesi",
+    "Beykent Üniversitesi",
     "Boğaziçi Üniversitesi",
+    "Bolu Abant İzzet Baysal Üniversitesi",
+    "Bursa Teknik Üniversitesi",    
+    "Celal Bayar Üniversitesi",
     "Çağ Üniversitesi",
     "Çankaya Üniversitesi",
     "Çanakkale 18 Mart Üniversitesi",
     "Çukurova Üniversitesi",
-    "Sivas Cumhuriyet Üniversitesi",
+    "Çankırı karatekin Üniversitesi",
     "Dokuz Eylül Üniversitesi",
     "Deniz Harp Okulu",
     "Dicle Üniversitesi",
     "Doğuş Üniversitesi",
     "Dumlupınar Üniversitesi",
+    "Düzce Üniversitesi",
     "Ege Üniversitesi",
     "Erciyes Üniversitesi",
-    "TOBB Ekonomi Ve Teknoloji Üniversitesi",
+    "Erzincan Binali Yıldırım Üniversitesi",
+    "Erzurum Teknik Üniversitesi",
+    "Fatih Sultan Mehmet Üniversitesi",
     "Fırat Üniversitesi",
     "Fenerbahçe Üniversitesi",
     "Gaziantep Üniversitesi",
@@ -341,145 +374,116 @@ function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorVal
     "Gaziosmanpaşa Üniversitesi",
     "Galatasaray Üniversitesi",
     "Gebze Teknik Üniversitesi",
-    "Haliç Üniversitesi",
-    "Harran Üniversitesi",
-    "Hacettepe Üniversitesi",
-    "Bolu Abant İzzet Baysal Üniversitesi",
-    "İstanbul Kültür Üniversitesi",
-    "Inönü Üniversitesi",
-    "Işık Üniversitesi",
-    "İstanbul Ticaret Üniversitesi",
-    "İstanbul Teknik Üniversitesi",
-    "İzmir Yüksek Teknoloji Enstitüsü",
-    "Kafkas Üniversitesi",
-    "Zonguldak Bülent Ecevit Üniversitesi",
-    "Kadir Has Üniversitesi",
-    "Kilis 7 Aralık Üniversitesi",
-    "Kırıkkale Üniversitesi",
-    "Necmettin Erbakan Üniversitesi",
-    "Kocaeli Üniversitesi",
-    "Kahramanmaraş Sütçü İmam Üniversitesi",
-    "Karadeniz Teknik Üniversitesi",
-    "Koç Üniversitesi",
-    "Maltepe Üniversitesi",
-    "Marmara Üniversitesi",
-    "Mersin Üniversitesi",
-    "Mustafa Kemal Üniversitesi",
-    "Mimar Sinan Üniversitesi",
-    "Muğla Sıtkı Koçman Üniversitesi",
-    "Ömer Halisdemir Üniversitesi",
-    "Namık Kemal Üniversitesi",
-    "Orta Doğu Teknik Üniversitesi",
-    "Osmangazi Üniversitesi",
-    "Ordu Üniversitesi",
-    "Özyeğin Üniversitesi",
-    "Pamukkale Üniversitesi",
-    "Sabancı Üniversitesi",
-    "Sakarya Üniversitesi",
-    "Süleyman Demirel Üniversitesi",
-    "İstanbul Şehir Üniversitesi",
-    "Selçuk Üniversitesi",
-    "Tarsus Üniversitesi",
-    "Türk-Alman Üniversitesi",
-    "Trakya Üniversitesi",
-    "Ufuk Üniversitesi",
-    "Uludağ Üniversitesi",
-    "Yalova Üniversitesi",
-    "Yaşar Üniversitesi",
-    "Yeditepe Üniversitesi",
-    "Yıldız Teknik Üniversitesi",
-    "Van Yüzüncü Yıl Üniversitesi",
-    "Abdullah Gül Üniversitesi",
-    "Adana Alparslan Türkeş Bilim Teknoloji Üniversitesi",
-    "Adıyaman Üniversitesi",
-    "Ağrı İbrahim Çeçen Üniversitesi",
-    "Aksaray Üniversitesi",
-    "Alanya Alaaddin Keykubat Üniversitesi",
-    "Amasya Üniversitesi",
-    "Ankara Sosyal Bilimler Üniversitesi",
-    "Ardahan Üniversitesi",
-    "Artvin Çoruh Üniversitesi",
-    "Bandırma Onyedi Eylül Üniversitesi",
-    "Bartın Üniversitesi",
-    "Batman Üniversitesi",
-    "Bayburt Üniversitesi",
-    "Bingol Üniversitesi",
-    "Bitlis Eren Üniversitesi",
-    "Yozgat Bozok Üniversitesi",
-    "Bursa Teknik Üniversitesi",
-    "Çankırı karatekin Üniversitesi",
-    "Düzce Üniversitesi",
-    "Erzincan Binali Yıldırım Üniversitesi",
-    "Erzurum Teknik Üniversitesi",
-    "Sağlık Bilimler Üniversitesi",
-    "Gümüşhane Üniversitesi",
-    "Hakkari Üniversitesi",
-    "Milli Savunma Üniversitesi Hava Harp Okulu",
-    "Hitit Üniversitesi",
-    "Iğdır Üniversitesi",
-    "İskenderun Teknik Üniversitesi",
-    "İstanbul Medeniyet Üniversitesi",
-    "İstanbul Üniversitesi",
-    "İzmir Katip Çelebi Üniversitesi",
-    "Karabük Üniversitesi",
-    "karamanoğlu Mehmet Bey Üniversitesi",
-    "Kastamonu Üniversitesi",
-    "Kırklareli Üniversitesi",
-    "Mardin Artuklu Üniversitesi",
-    "Mehmet Akif Ersoy Üniversitesi",
-    "Mimar Sinan Güzel Sanatlar Üniversitesi",
-    "Muş Alparslan Üniversitesi",
-    "Nevşehir Hacı Bektaş Veli Üniversitesi",
-    "Osmaniye Korkut Ata Üniversitesi",
-    "Recep Tayyip Erdoğan Üniversitesi",
-    "Siirt Üniversitesi",
-    "Sinop Üniversitesi",
-    "Şırnak Üniversitesi",
-    "Tunceli Üniversitesi",
-    "Uşak Üniversitesi",
-    "Bülent Ecevit Üniversitesi",
-    "Acıbadem Üniversitesi",
-    "Alanya Hamdullah Emin Paşa Üniversitesi",
-    "Avrasya Üniversitesi",
-    "Bezmialem Vakıf Üniversitesi",
-    "Biruni Üniversitesi",
-    "Fatih Sultan Mehmet Üniversitesi",
     "Gedik Üniversitesi",
+    "Gümüşhane Üniversitesi",
+    "Hacettepe Üniversitesi",
+    "Haliç Üniversitesi",
     "Hasan Kalyoncu Üniversitesi",
-    "İstanbul 29 Mayıs  Üniversitesi",
+    "Hakkari Üniversitesi",
+    "Harran Üniversitesi",
+    "Hitit Üniversitesi",
+    "İnönü Üniversitesi",
+    "İskenderun Teknik Üniversitesi",
+    "İstanbul Arel Üniversitesi",
     "İstanbul Aydın Üniversitesi",
+    "İstanbul Bilgi Üniversitesi",
     "İstanbul Esenyurt Üniversitesi",
     "İstanbul Gelişim Üniversitesi",
     "İstanbul Kemerburgaz  Üniversitesi",
+    "İstanbul Kültür Üniversitesi",
+    "İstanbul Medeniyet Üniversitesi",
     "İstanbul Medipol Üniversitesi",
     "İstanbul Rumeli Üniversitesi",
     "İstanbul Sabahattin Zaim Üniversitesi",
+    "İstanbul Şehir Üniversitesi",
+    "İstanbul Teknik Üniversitesi",
+    "İstanbul Ticaret Üniversitesi",
+    "İstanbul Üniversitesi",
+    "İstanbul 29 Mayıs  Üniversitesi",
+    "İzmir Bakırçay Üniversitesi",
     "İzmir Ekonomi Üniversitesi",
+    "İzmir Demokrasi Üniversitesi",
+    "İzmir Katip Çelebi Üniversitesi",
+    "İzmir Tınaztepe Üniversitesi",
+    "İzmir Yüksek Teknoloji Enstitüsü",
+    "Iğdır Üniversitesi",
+    "Işık Üniversitesi",
+    "Kadir Has Üniversitesi",
+    "Kahramanmaraş Sütçü İmam Üniversitesi",
+    "Kafkas Üniversitesi",
+    "Karabük Üniversitesi",
+    "Karadeniz Teknik Üniversitesi",
+    "karamanoğlu Mehmet Bey Üniversitesi",
     "Karatay Üniversitesi",
+    "Kastamonu Üniversitesi",
+    "Kilis 7 Aralık Üniversitesi",
+    "Kırıkkale Üniversitesi",
+    "Kırklareli Üniversitesi",
+    "Kocaeli Üniversitesi",
+    "Koç Üniversitesi",
     "Konya Gıda Tarım Üniversitesi",
+    "Konya Teknik Üniversitesi",
+    "Maltepe Üniversitesi",
+    "Mardin Artuklu Üniversitesi",
+    "Marmara Üniversitesi",
     "MEF Üniversitesi",
+    "Mehmet Akif Ersoy Üniversitesi",
+    "Mersin Üniversitesi",
+    "Milli Savunma Üniversitesi Hava Harp Okulu",
+    "Mimar Sinan Güzel Sanatlar Üniversitesi",
+    "Mustafa Kemal Üniversitesi",
+    "Muş Alparslan Üniversitesi",
+    "Muğla Sıtkı Koçman Üniversitesi",
+    "Namık Kemal Üniversitesi",
+    "Necmettin Erbakan Üniversitesi",
+    "Nevşehir Hacı Bektaş Veli Üniversitesi",
     "Nisantaşi Üniversitesi",
     "Nuh Naci Yazgan Üniversitesi",
     "Okan Üniversitesi",
-    "Piri Reis Üniversitesi",
-    "Sanko Üniversitesi",
-    "TED Üniversitesi",
-    "Toros Üniversitesi",
-    "Türk Hava Kurumu Üniversitesi",
-    "Antalya Bilim Üniversitesi",
-    "Üsküdar Üniversitesi",
-    "Yeni Yüzyıl Üniversitesi",
-    "Yüksek ihtisas Üniversitesi",
-    "Konya Teknik Üniversitesi",
-    "İzmir Bakırçay Üniversitesi",
-    "İzmir Demokrasi Üniversitesi",
-    "İzmir Tınaztepe Üniversitesi",
-    "Ankara Yıldirım Beyazit Üniversitesi",
-    "OSTIM Teknik Üniversitesi",
-    "Ankara Medipol Üniversitesi",
-    "Ankara Bilim Üniversitesi",
     "Ondokuz Mayıs Üniversitesi",
+    "Orta Doğu Teknik Üniversitesi",
+    "Osmangazi Üniversitesi",
+    "Osmaniye Korkut Ata Üniversitesi",
+    "OSTIM Teknik Üniversitesi",
+    "Ordu Üniversitesi",
+    "Ömer Halisdemir Üniversitesi",
+    "Özyeğin Üniversitesi",
+    "Pamukkale Üniversitesi",
+    "Piri Reis Üniversitesi",
+    "Recep Tayyip Erdoğan Üniversitesi",
+    "Sabancı Üniversitesi",
+    "Sağlık Bilimler Üniversitesi",
+    "Sakarya Üniversitesi",
+    "Sanko Üniversitesi",
+    "Siirt Üniversitesi",
+    "Sinop Üniversitesi",
+    "Süleyman Demirel Üniversitesi",
+    "Sivas Cumhuriyet Üniversitesi",
+    "Selçuk Üniversitesi",
+    "Şırnak Üniversitesi",
+    "Tarsus Üniversitesi",
+    "TED Üniversitesi",
+    "Trakya Üniversitesi",
+    "TOBB Ekonomi Ve Teknoloji Üniversitesi",
+    "Toros Üniversitesi",
+    "Tunceli Üniversitesi",
+    "Türk Hava Kurumu Üniversitesi",
+    "Türk-Alman Üniversitesi",
+    "Ufuk Üniversitesi",
+    "Uludağ Üniversitesi",
+    "Uşak Üniversitesi",
+    "Üsküdar Üniversitesi",
+    "Van Yüzüncü Yıl Üniversitesi",
+    "Yalova Üniversitesi",
+    "Yaşar Üniversitesi",
+    "Yeditepe Üniversitesi",
+    "Yeni Yüzyıl Üniversitesi",
+    "Yıldız Teknik Üniversitesi",
+    "Yozgat Bozok Üniversitesi",
+    "Yüksek ihtisas Üniversitesi",
+    "Zonguldak Bülent Ecevit Üniversitesi"
   ]
+
 
 
   // universitiesFromLocalStorage = JSON.parse(window.localStorage.getItem("allUniversities"));
@@ -511,6 +515,12 @@ function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorVal
   studentmajor.setAttribute("list","majorsList");
   studentmajor.placeholder = "Öğrencinin Bölümü";
   studentmajor.value = majorValue;
+
+  studentmajor.onkeyup = function() {
+    if(!this.value.endsWith(" ")) {
+      this.value = capitalizeFirstLetters(this.value);
+    }
+  }
 
   studentmajorDiv.appendChild(studentmajor);
   
@@ -653,19 +663,88 @@ function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorVal
   let studentPhoneDiv = document.createElement("div");
   studentPhoneDiv.classList = "studentInputDiv studentPhoneDiv";
 
-  let studentPhoneLabel =document.createElement("label");
+  let studentPhoneLabel = document.createElement("label");
   studentPhoneLabel.setAttribute("for", "studentPhone");
   studentPhoneLabel.innerHTML = "Tel. No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:";
   studentPhoneDiv.appendChild(studentPhoneLabel);
 
+  let studentPhoneDivDiv = document.createElement("div");
+  studentPhoneDivDiv.className = "studentPhoneDivDiv";
+
+  let studentPhoneCountry = document.createElement("select");
+  studentPhoneCountry.id = "countryCode";
+  studentPhoneCountry.className = "countryCode";
+  studentPhoneCountry.innerHTML = `
+  <option value="+1">USA (+1)</option>
+  <option value="+44">UK (+44)</option>
+  <option value="+90" selected>TR (+90)</option>
+  `;
+
+  studentPhoneDivDiv.appendChild(studentPhoneCountry);
+
+
   let studentPhone = document.createElement("input");
   studentPhone.classList = "studentInput studentPhone";
   studentPhone.id = "studentPhone";
-  studentPhone.type = "text";
-  studentPhone.placeholder = "Öğrencinin Telefonu";
+  studentPhone.type = "tel";
+  studentPhone.placeholder = "(xxx) xxx xx xx";
+  studentPhone.maxLength = 15;
   studentPhone.value = phoneValue;
+
+  const phoneInputs = studentPhoneCountry.querySelectorAll('option');
+  console.log(phoneInputs)
+  let selectedPhone = false;
+  for (const input of phoneInputs) {
+    if(phoneValue.startsWith(input.value)) {
+      console.log("bulundu");
+       input.selected = true;
+       selectedPhone = true;
+       studentPhone.value = phoneValue;
+     }
+  }
+
+  // studentPhone.onfocus = function() {
+  //   if(this.value === studentPhoneCountry.value){
+  //     this.value = studentPhoneCountry.value + " (";
+  //   }
+  // }
+
+  studentPhone.onkeyup = function() {
+    let countryCode = studentPhoneCountry.value;
+    let phoneNumber = studentPhone.value.replace(/\D/g, ''); // Remove non-numeric characters
+
+    console.log(studentPhone.value);
+    console.log(studentPhone.value.length);
+    console.log(countryCode);
+    console.log(phoneNumber);
+    console.log("#########");
+
+    if(studentPhone.value.length === 1) {
+      studentPhone.value = "(" + studentPhone.value;
+    }
+    else if(studentPhone.value.length > 1 && studentPhone.value.length <= 3) {
+      studentPhone.value = "(" + phoneNumber.substring(0, 3);
+    } else if(studentPhone.value.length === 4) {
+      studentPhone.value = "(" + phoneNumber.substring(0, 3) + ") ";
+    } else if(studentPhone.value.length > 6 && studentPhone.value.length <= 8) {
+      studentPhone.value = "(" + phoneNumber.substring(0, 3) + ") " + phoneNumber.substring(3, 6);
+    } else if(studentPhone.value.length === 9) {
+      studentPhone.value = "(" + phoneNumber.substring(0, 3) + ") " + phoneNumber.substring(3, 6) + " ";
+    } else if(studentPhone.value.length === 11) {
+      studentPhone.value = "(" + phoneNumber.substring(0, 3) + ") " + phoneNumber.substring(3, 6) + " " + phoneNumber.substring(6, 8);
+    } else if(studentPhone.value.length === 12) {
+      studentPhone.value = "(" + phoneNumber.substring(0, 3) + ") " + phoneNumber.substring(3, 6) + " " + phoneNumber.substring(6, 8) + " ";
+    } else if(studentPhone.value.length > 13 && studentPhone.value.length <= 15) {
+      studentPhone.value = "(" + phoneNumber.substring(0, 3) + ") " + phoneNumber.substring(3, 6) + " " + phoneNumber.substring(6, 8) + " " + phoneNumber.substring(8, 10);
+    } else if(studentPhone.value.length > 15) {
+      console.log("hata oldu1");
+    } else {
+      console.log("hata oldu2");
+    }
+  }
   
-  studentPhoneDiv.appendChild(studentPhone);
+  studentPhoneDivDiv.appendChild(studentPhone);
+  studentPhoneDiv.appendChild(studentPhoneDivDiv);
   studentForm.appendChild(studentPhoneDiv);
   //Phone
 
@@ -689,12 +768,45 @@ function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorVal
   let homelandDtaList = document.createElement("datalist");
   homelandDtaList.id = "homelandList";
 
-  let turkiye = document.querySelectorAll("#turkiye > g");
-
-  for(city of turkiye) {
+  for(city of iller) {
     const option = document.createElement("option");
     option.value = city.getAttribute("data-iladi");
     homelandDtaList.appendChild(option);
+  }
+
+  (async function() {
+    const viransehir = document.createElement("option");
+    viransehir.value = "Şanlıurfa (Viranşehir)";
+    homelandDtaList.appendChild(viransehir);
+
+    const siverek = document.createElement("option");
+    siverek.value = "Şanlıurfa (Siverek)";
+    homelandDtaList.appendChild(siverek);
+
+    const kurtalan = document.createElement("option");
+    kurtalan.value = "Siirt (Kurtalan)";
+    homelandDtaList.appendChild(kurtalan);
+
+    const nizip = document.createElement("option");
+    nizip.value = "Gaziantep (Nizip)";
+    homelandDtaList.appendChild(nizip);
+
+    const kiziltepe = document.createElement("option");
+    kiziltepe.value = "Mardin (Kızıltepe)";
+    homelandDtaList.appendChild(kiziltepe);
+
+    const midyat = document.createElement("option");
+    midyat.value = "Mardin (Midyat)";
+    homelandDtaList.appendChild(midyat);
+
+
+  })()
+
+
+  studentHomeland.onkeyup = function() {
+    if(!this.value.endsWith(" ")) {
+      this.value = capitalizeFirstLetters(this.value);
+    }
   }
 
   studentHomelandDiv.appendChild(homelandDtaList);
@@ -772,46 +884,6 @@ function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorVal
   //Burs
 
 
-
-  //Nerede
-  let studentNeredeDiv = document.createElement("div");
-  studentNeredeDiv.classList = "studentInputDiv studentNeredeDiv";
-
-  let studentNeredeLabel =document.createElement("label");
-  studentNeredeLabel.setAttribute("for", "studentNerede");
-  studentNeredeLabel.innerHTML = "Nerede Kalıyor?";
-  studentNeredeDiv.appendChild(studentNeredeLabel);
-
-  let studentNerede = document.createElement("select");
-  studentNerede.classList = "studentInput studentNerede";
-  studentNerede.id = "studentNerede";
-  studentNerede.required = true;
-  studentNerede.innerHTML = `
-    <option value="Vakıfın Olduğu Şubelerde Kalıyor">Vakıfın Olduğu Şubelerde Kalıyor</option>
-    <option value="Vakıfın Olmadığı Şube Dışında Kalıyor">Vakıfın Olmadığı Şube Dışında Kalıyor</option>
-    <option value="Temsilciliklerde Kalıyor">Temsilciliklerde Kalıyor</option>
-  `
-
-  const neredeInputs = studentNerede.querySelectorAll('option');
-  let selectedNerede = false;
-  for (const input of neredeInputs) {
-    if(input.value === neredeValue) {
-       input.selected = true;
-       selectedNerede = true;
-     }
-  }
-  if(selectedNerede === false) {
-    studentNerede.value = "";
-  }
-
-  studentNeredeDiv.appendChild(studentNerede);
-  studentForm.appendChild(studentNeredeDiv);
-  //Nerede
-
-
-
-
-  
   let studentSubmit = document.createElement("input");
   studentSubmit.classList.add("studentSubmit");
   studentSubmit.type = "submit";
@@ -832,25 +904,62 @@ function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorVal
   
   
   studentForm.onsubmit = function(event) {
-    if(studentName.value !== '') {
-      event.preventDefault();
-      console.log(capitalizeFirstLetters(studentName.value));
+    event.preventDefault();
 
-      currentStudentsArray = JSON.parse(window.localStorage.getItem(`${cityId}`)) || [];
-      console.log(currentStudentsArray);
-      console.log(currentStudentsArray.length);
-      
-      if(!updateStudent) {
-        console.log("normal ekleme")
-        let isStudentAviable = true;
-        currentStudentsArray.forEach((student) => {
-          if(student.name === capitalizeFirstLetters(studentName.value)) {
-            isStudentAviable = false;
-          }
-        })
+    currentStudentsArray = JSON.parse(window.localStorage.getItem(`${cityId}`)) || [];
+    
+    if(!updateStudent) {
+      console.log("normal ekleme")
+      let isStudentAviable = true;
+      currentStudentsArray.forEach((student) => {
+        if(student.name === capitalizeFirstLetters(studentName.value)) {
+          isStudentAviable = false;
+        }
+      })
 
-        if(isStudentAviable) {
-          console.log("normal ekleme avialble")
+      if(isStudentAviable) {
+        console.log("normal ekleme avialble")
+        let newStudent = new Student(
+          capitalizeFirstLetters(studentName.value),
+          capitalizeFirstLetters(studentUniversity.value),
+          capitalizeFirstLetters(studentmajor.value),
+          studentClass.value,
+          `${studentPhoneCountry.value} ${studentPhone.value}`,
+          capitalizeFirstLetters(studentHomeland.value),
+          studentGencDavetci.value,
+          studentBurs.value);
+        console.log(newStudent)
+        addPersonToLocalStorage(cityId, newStudent);
+        
+        myPromptMainDiv.style.animation = "disappperance 0.5s forwards";
+        setTimeout(function() {
+          promptBackground.remove();
+          myPromptMainDiv.remove();
+        }, 400)
+        numbersOnCities();
+      } else {
+        let erorSpan = document.createElement("span");
+        erorSpan.className = "erorSpan";
+        erorSpan.innerHTML = "Bu Öğrenci Zaten Bu İlde Kayıtlıdır!";
+        studentForm.appendChild(erorSpan);
+        let formCanclee = erorSpan.previousElementSibling;
+        formCanclee.style.marginBottom = "37px";
+      }
+    } else {
+      console.log("normal ekleme degil, guncelleme")
+      let oldNote;
+      currentStudentsArray.forEach((student) => {
+        if(student.name === nameValue) {
+          oldNote = student.note;
+        }
+      })
+
+      // currentStudentsArray = currentStudentsArray.filter((student) => student.name !== nameValue);
+
+      currentStudentsArray.forEach((student) => {
+        if(student.name === nameValue) {
+          console.log(currentStudentsArray.indexOf(student));
+
           let newStudent = new Student(
             capitalizeFirstLetters(studentName.value),
             capitalizeFirstLetters(studentUniversity.value),
@@ -860,126 +969,33 @@ function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorVal
             capitalizeFirstLetters(studentHomeland.value),
             studentGencDavetci.value,
             studentBurs.value,
-            studentNerede.value);
-          console.log(newStudent)
-          addPersonToLocalStorage(cityId, newStudent);
-          
-          myPromptMainDiv.style.animation = "disappperance 0.5s forwards";
-          setTimeout(function() {
-            promptBackground.remove();
-            myPromptMainDiv.remove();
-          }, 400)
-          numbersOnCities();
-        } else {
-          let erorSpan = document.createElement("span");
-          erorSpan.className = "erorSpan";
-          erorSpan.innerHTML = "Bu Öğrenci Zaten Bu İlde Kayıtlıdır!";
-          let myBr = document.createElement("br");
-          form.appendChild(myBr);
-          form.appendChild(erorSpan);
+            oldNote);
+          currentStudentsArray[currentStudentsArray.indexOf(student)] = newStudent
+          console.log(currentStudentsArray);
+
+          window.localStorage.setItem(`${cityId}`, JSON.stringify(currentStudentsArray));
+          updateList(cityId);
         }
-      } else {
-        console.log("normal ekleme degil, guncelleme")
-        let oldNote;
-        currentStudentsArray.forEach((student) => {
-          if(student.name === nameValue) {
-            oldNote = student.note;
-          }
-        })
-
-        // currentStudentsArray = currentStudentsArray.filter((student) => student.name !== nameValue);
-
-        currentStudentsArray.forEach((student) => {
-          if(student.name === nameValue) {
-            console.log(currentStudentsArray.indexOf(student));
-
-            let newStudent = new Student(
-              capitalizeFirstLetters(studentName.value),
-              capitalizeFirstLetters(studentUniversity.value),
-              capitalizeFirstLetters(studentmajor.value),
-              studentClass.value,
-              studentPhone.value,
-              capitalizeFirstLetters(studentHomeland.value),
-              studentGencDavetci.value,
-              studentBurs.value,
-              studentNerede.value,
-              oldNote);
-            currentStudentsArray[currentStudentsArray.indexOf(student)] = newStudent
-            console.log(currentStudentsArray);
-
-            window.localStorage.setItem(`${cityId}`, JSON.stringify(currentStudentsArray));
-            updateList(cityId);
-          }
-        });
+      });
 
 
-        // window.localStorage.setItem(`${cityId}`, JSON.stringify(currentStudentsArray));
-        // let newStudent = new Student(capitalizeFirstLetters(studentName.value), capitalizeFirstLetters(studentUniversity.value), capitalizeFirstLetters(studentmajor.value), studentClass.value, studentPhone.value, capitalizeFirstLetters(studentHomeland.value), oldNote);
-        // console.log(newStudent)
-        // addPersonToLocalStorage(cityId, newStudent);
-        
-        myPromptMainDiv.style.animation = "disappperance 0.5s forwards";
-        setTimeout(function() {
-          promptBackground.remove();
-          myPromptMainDiv.remove();
-        }, 400)
-        numbersOnCities();
-      }
-
-
-
+      // window.localStorage.setItem(`${cityId}`, JSON.stringify(currentStudentsArray));
+      // let newStudent = new Student(capitalizeFirstLetters(studentName.value), capitalizeFirstLetters(studentUniversity.value), capitalizeFirstLetters(studentmajor.value), studentClass.value, studentPhone.value, capitalizeFirstLetters(studentHomeland.value), oldNote);
+      // console.log(newStudent)
+      // addPersonToLocalStorage(cityId, newStudent);
+      
+      myPromptMainDiv.style.animation = "disappperance 0.5s forwards";
+      setTimeout(function() {
+        promptBackground.remove();
+        myPromptMainDiv.remove();
+      }, 400)
+      numbersOnCities();
     }
   }
-  
-  
-  
-  
+
   studentForm.appendChild(studentSubmit);
-  // form.appendChild(studentForm);
   
-
-
-  // let formSpans = document.createElement("div");
-  // formSpans.classList.add("formSpans");
-  // form.appendChild(formSpans);
-
-
-  // let studentNameSpan = document.createElement("span");
-  // studentNameSpan.innerHTML = "Ad Soyad&nbsp;&nbsp;&nbsp;:";
-  // formSpans.appendChild(studentNameSpan);
-
-  // let studentUniSpan = document.createElement("span");
-  // studentUniSpan.innerHTML = "Üniversite&nbsp;:";
-  // formSpans.appendChild(studentUniSpan);
-
-  // let studentMajorSpan = document.createElement("span");
-  // studentMajorSpan.innerHTML = "Bölüm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:";
-  // formSpans.appendChild(studentMajorSpan);
-
-  // let studenClasstSpan = document.createElement("span");
-  // studenClasstSpan.innerHTML = "Sınıf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:";
-  // formSpans.appendChild(studenClasstSpan);
-
-  // let studentTelSpan = document.createElement("span");
-  // studentTelSpan.innerHTML = "Tel. No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:";
-  // formSpans.appendChild(studentTelSpan);
-
-  // let studenHomelandSpan = document.createElement("span");
-  // studenHomelandSpan.innerHTML = "Memleket&nbsp;:";
-  // formSpans.appendChild(studenHomelandSpan);
-
-  // let studenGencDavetciSpan = document.createElement("span");
-  // studenGencDavetciSpan.innerHTML = "Genç Davetçi Programına Katılabilirmi?";
-  // formSpans.appendChild(studenGencDavetciSpan);
-
-  // let studenBursSpan = document.createElement("span");
-  // studenBursSpan.innerHTML = "Burs Alıyormu?";
-  // formSpans.appendChild(studenBursSpan);
-
-  // let studenNeredeSpan = document.createElement("span");
-  // studenNeredeSpan.innerHTML = "Nerede Kalıyor?";
-  // formSpans.appendChild(studenNeredeSpan);
-
+  
 
   let formCancle = document.createElement("span");
   formCancle.classList.add("formCancle");
@@ -1005,7 +1021,7 @@ function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorVal
 
   let promptClose = document.createElement("span");
   promptClose.classList.add("promptClose");
-  promptClose.innerHTML = " x ";
+  promptClose.innerHTML = `<svg height="23" viewBox="0 0 20 20" width="23" xmlns="http://www.w3.org/2000/svg"><path d="m15.8333 5.34166-1.175-1.175-4.6583 4.65834-4.65833-4.65834-1.175 1.175 4.65833 4.65834-4.65833 4.6583 1.175 1.175 4.65833-4.6583 4.6583 4.6583 1.175-1.175-4.6583-4.6583z" fill="#e2ddef"></path></svg>`;
   promptClose.addEventListener("click", () => {
     myPromptMainDiv.style.animation = "goAway 0.4s forwards";
     setTimeout(function() {
@@ -1018,7 +1034,7 @@ function addStudentPrompt(cityId, nameValue = "", universityValue = "", majorVal
     promptClose.style.backgroundColor = "red";
   })
   promptClose.addEventListener("mouseout", () => {
-    promptClose.style.backgroundColor = "#777";
+    promptClose.style.backgroundColor = "#024959";
   })
   myPromptMainDiv.appendChild(promptClose);
   
@@ -1087,7 +1103,6 @@ function addNotePrompt(cityId, student) {
           student.homeland,
           student.gencDavetci,
           student.burs,
-          student.nerede,
           student.note);
 
         currentStudentsArray[currentStudentsArray.indexOf(person)] = newStudent;
@@ -1135,7 +1150,7 @@ function addNotePrompt(cityId, student) {
 
   let promptClose = document.createElement("span");
   promptClose.classList.add("promptClose");
-  promptClose.innerHTML = " x ";
+  promptClose.innerHTML = `<svg height="23" viewBox="0 0 20 20" width="23" xmlns="http://www.w3.org/2000/svg"><path d="m15.8333 5.34166-1.175-1.175-4.6583 4.65834-4.65833-4.65834-1.175 1.175 4.65833 4.65834-4.65833 4.6583 1.175 1.175 4.65833-4.6583 4.6583 4.6583 1.175-1.175-4.6583-4.6583z" fill="#e2ddef"></path></svg>`;
   promptClose.addEventListener("click", () => {
     addNotePromptMainDiv.style.animation = "goAway 0.4s forwards";
     setTimeout(function() {
@@ -1148,7 +1163,7 @@ function addNotePrompt(cityId, student) {
     promptClose.style.backgroundColor = "red";
   })
   promptClose.addEventListener("mouseout", () => {
-    promptClose.style.backgroundColor = "#777";
+    promptClose.style.backgroundColor = "#024959";
   })
   addNotePromptMainDiv.appendChild(promptClose);
 
@@ -1370,7 +1385,7 @@ function updateList(cityId) {
       }
 
       editBtn.onclick = function() {
-        addStudentPrompt(cityId, person.name, person.university, person.major, person.hisClass, person.phone, person.homeland, person.gencDavetci , person.burs, person.nerede, true);
+        addStudentPrompt(cityId, person.name, person.university, person.major, person.hisClass, person.phone, person.homeland, person.gencDavetci , person.burs, true);
       }
 
       
@@ -1436,9 +1451,6 @@ function updateList(cityId) {
       pBurs.innerHTML = `Burs Alıyormu: ${person.burs}`;
       personElement.appendChild(pBurs);
 
-      let pNerede = document.createElement("span");
-      pNerede.innerHTML = `Nerede Kalıyor: ${person.nerede}`;
-      personElement.appendChild(pNerede);
 
       if(person.note !== '') {
         let noteDiv = document.createElement("div");
@@ -1483,7 +1495,8 @@ function numbersOnCities() {
     
     let cityFromLocal = JSON.parse(window.localStorage.getItem(`${sehir.id}`)) || [];
 
-    if(cityFromLocal.length) { 
+    if(cityFromLocal.length) {
+      sehir.setAttribute("has-student", "var");
       let studentsCount = document.createElement("span");
       studentsCount.className = "studentsCount";
       studentsCount.id = `${sehir.id}`;
@@ -1498,7 +1511,7 @@ function numbersOnCities() {
             event.target.id,
             '</div>'
           ].join('');
-          sehir.firstElementChild.style.fill = "#E3CCAE";
+          sehir.firstElementChild.style.fill = "#45270c";
           }
       );
     
@@ -1723,6 +1736,8 @@ function numbersOnCities() {
       }
         
       document.body.appendChild(studentsCount);
+    } else {
+      sehir.setAttribute("has-student", "yok");
     }
   });
 }
@@ -1797,7 +1812,7 @@ function myCustomConfirm(message) {
 
     let confirmClose = document.createElement("span");
     confirmClose.classList.add("confirmClose");
-    confirmClose.innerHTML = " x ";
+    confirmClose.innerHTML = `<svg height="23" viewBox="0 0 20 20" width="23" xmlns="http://www.w3.org/2000/svg"><path d="m15.8333 5.34166-1.175-1.175-4.6583 4.65834-4.65833-4.65834-1.175 1.175 4.65833 4.65834-4.65833 4.6583 1.175 1.175 4.65833-4.6583 4.6583 4.6583 1.175-1.175-4.6583-4.6583z" fill="#e2ddef"></path></svg>`;
 
     confirmClose.onclick = function() {
       myConfirmMainDiv.style.animation = "goAway 0.4s forwards";
@@ -1813,7 +1828,7 @@ function myCustomConfirm(message) {
     });
 
     confirmClose.addEventListener("mouseout", () => {
-      confirmClose.style.backgroundColor = "#777";
+      confirmClose.style.backgroundColor = "#024959";
     });
 
     myConfirmMainDiv.appendChild(confirmClose);
@@ -1842,4 +1857,18 @@ const sidebarClose = document.getElementById("links-close");
 sidebarClose.onclick = function() {
   sidebarClose.parentElement.parentElement.style.transform = "translateX(-100%)";
 }
+
+
+let citiesInformation = [];
+
+iller.forEach(city => {
+  let cityInformation = {cityId: city.id, cityName: city.getAttribute("data-iladi")};
+  citiesInformation.push(cityInformation);
+})
+
+console.log(citiesInformation);
+
+localStorage.setItem('citiesInformation', JSON.stringify(citiesInformation));
+
+
 

@@ -18,7 +18,7 @@ background-image: url("../images/dark_mosaic.png");
 
 }
 
-footer{
+header{
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -30,23 +30,23 @@ footer{
 }
 
 @media (max-width: 767px) {
-  footer{
+  header{
     flex-direction: row-reverse;
     box-shadow: 8px 0 12px 5px #ab794e30;
   }
 }
 
-footer .logo-side{
+header .logo-side{
   
 }
 
-footer .logo-side span{
+header .logo-side span{
   color: rgb(0, 0, 0);
 }
 
 
 @media (min-width: 768px) {
-  footer .logo-side .logo{
+  header .logo-side .logo{
     font-size: 25px;
     padding: 10px;
     border-radius: 10px;
@@ -55,17 +55,17 @@ footer .logo-side span{
   }
 
 
-  footer .links-side .links{
+  header .links-side .links{
     height: 100%;
-    padding-right: 50px;
   }
-  footer .links-side .links-side-content .close{
+  header .links-side .links-side-content .close{
     display: none;
   }
 
-  footer .links-side .links ul{
+  header .links-side .links ul{
     display: flex;
     align-items: center;
+    gap: 8px;
     list-style: none;
     height: 100%;
     padding: 0;
@@ -73,114 +73,122 @@ footer .logo-side span{
   }
 
     
-  footer .links-side .links ul li a{
+  header .links-side .links ul li a{
     text-decoration: none;
     color: white;
-    padding: 10px 15px;
+    padding: 10px;
     border-radius: 12px;
     transition: 0.2s;
   }
 
-  footer .links-side .links ul li a:hover{
+  header .links-side .links ul li a:hover,
+  header .links-side .links ul li a.active{
     background-color: #93816d3a;
   }
 
-  footer .links-side .links ul a svg {
+  header .links-side .links ul a svg {
     display: none;
   }
 
-  footer .links-side .bars{
+  header .links-side .bars{
     display: none;
   }
 }
 
 @media (max-width: 767px) {
-  footer .logo-side span {
+  header .logo-side span {
     font-size: 14px;
     padding: 8px;
     border-radius: 8px;
     background-image: linear-gradient(135deg, #ffc47c, #ff9b2093, #4d3a0638);
   }
 
-  footer .links-side .links-side-content{
+  header .links-side .links-side-content{
     position: absolute;
     top: 0;
     left: -180px;
     width: 180px;
     height: 100vh;
     background-color: #0b1d59fc;
+    background-color: #024959;
     padding: 10px 14px;
     transition: 0.3s;
-    z-index: 5;
+    z-index: 20;
   }
     
-  footer .links-side .links-side-content .close{
+  header .links-side .links-side-content .close{
     text-align: right;
     
   }
     
-  footer .links-side .links-side-content .close svg{
+  header .links-side .links-side-content .close svg{
     fill: red;
     width: 40px;
     padding: 5px;
   }
     
-  footer .links-side .links-side-content .close{
+  header .links-side .links-side-content .close{
     
   }
 
-  footer .links-side .links ul{
+  header .links-side .links ul{
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
   }
 
-  footer .links-side .links ul li {
+  header .links-side .links ul li {
     
   }
 
-  footer .links-side .links ul li a {
+  header .links-side .links ul li a {
     text-decoration: none;
     color: white;
     transition: 0.2s;
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  header .links-side .links ul li a.active{
+    background-color: #93816d3a;
   }
 
 
-  footer .links-side .links ul li a svg{
+  header .links-side .links ul li a svg{
     fill: white;
     width: 25px;
   }
 
-  footer .links-side .links ul li a span{
+  header .links-side .links ul li a span{
     padding-top: 3px;
   }
 
 
 
-  footer .links-side .bars{
+  header .links-side .bars{
     margin-right: 5px;
     margin-top: 5px;
+    cursor: pointer;
   }
-  footer .links-side .bars svg{
+  header .links-side .bars svg{
     width: 20px;
     height: 20px;
     fill: #fff;
   }
 }
 
-footer .links-side .links ul li{
+header .links-side .links ul li{
 
 }
 
 
 
-footer .links-side .links ul li a span{
+header .links-side .links ul li a span{
 
 }
 
@@ -408,23 +416,184 @@ border-radius: 4px;
 cursor: pointer;
 /* fill: #F99417; */
 }
-#svg-turkiye-haritasi g[data-vakif="var"] path{
-  fill: #BF9742;
+#svg-turkiye-haritasi g[data-vakif="var"] path{   /*vakif*/
+  fill: #6fa419;
 }
 #svg-turkiye-haritasi g[data-vakif="var"] path:hover{
-  fill: #E3CCAE;
+  fill: #45270c;
 }
-#svg-turkiye-haritasi g[data-vakif="yok"] path{
-  fill: #F99417;
+
+#svg-turkiye-haritasi g[data-vakif="yok"][data-temsilcilik="var"] path{  /*temsilcilik*/
+  fill: #51be98;
 }
-#svg-turkiye-haritasi g[data-vakif="yok"] path:hover{
-  fill: #E3CCAE;
+#svg-turkiye-haritasi g[data-vakif="yok"][data-temsilcilik="var"] path:hover{
+  fill: #45270c;
 }
+
+#svg-turkiye-haritasi g[data-vakif="yok"][data-temsilcilik="yok"][has-student="var"] path{  /*ogrenci*/
+  fill: #c97e1d;
+}
+#svg-turkiye-haritasi g[data-vakif="yok"][data-temsilcilik="yok"][has-student="yok"] path{    /*hic*/
+  fill: #ddd2c1;
+}
+#svg-turkiye-haritasi g[data-vakif="yok"][data-temsilcilik="yok"] path:hover{
+  fill: #45270c;
+}
+
 /* #svg-turkiye-haritasi path:hover {
 fill: #E3CCAE;
 } */
 #guney-kibris {
 pointer-events: none;
+}
+
+.colors{
+  position: absolute;
+  bottom: 2%;
+  right: 4%;
+  background-color: hsla(197, 100%, 99%, 0.835);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  text-align: left;
+}
+
+.colors .info{
+  position: relative;
+}
+
+.colors .info > div{
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+.colors .info > div:not(:last-child) {
+  border-bottom: 1px solid #164c455f;
+}
+
+.colors .info .color{
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+.colors .info .vakif{
+  background-color: #6fa419;
+}
+
+.colors .info .temsilcilik{
+  background-color: #51be98;
+}
+
+.colors .info .onlyStudent{
+  background-color: #c97e1d;
+}
+
+.colors .info .nothing{
+  background-color: #ddd2c1;
+}
+
+@media (max-width:1160px) {
+  .colors{
+    right: 30px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width:1080px) {
+  .colors{
+    font-size: 8px;
+    padding: 4px;
+  }
+  .colors .info > div{
+    padding: 4px;
+    gap: 4px;
+  }
+  .colors .info .color{
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (max-width:767px) {
+  .colors{
+    font-size: 7px;
+    padding: 3px;
+    border-radius: 5px;
+  }
+  .colors .info > div{
+    padding: 3px;
+    gap: 2px;
+  }
+  .colors .info .color{
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+}
+
+@media (max-width:520px) {
+  .colors{
+    font-size: 5px;
+    padding: 2px;
+    border-radius: 5px;
+
+  }
+  .colors .info > div{
+    padding: 2px;
+    gap: 2px;
+  }
+  .colors .info .color{
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
+}
+
+@media (max-width:430px) {
+  .colors{
+    position: relative;
+    width: fit-content;
+    margin-left: auto;
+    transform: translateY(-40%) scale(1.5);
+    font-size: 5px;
+    padding: 2px;
+    border-radius: 5px;
+  }
+  .colors .info > div{
+    padding: 2px;
+    gap: 2px;
+  }
+  .colors .info .color{
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
+}
+
+@media (max-width:320px) {
+  .colors{
+    position: relative;
+    width: fit-content;
+    margin-left: auto;
+    transform: translateY(-40%) scale(1.2);
+    font-size: 5px;
+    padding: 2px;
+    border-radius: 5px;
+  }
+  .colors .info > div{
+    padding: 2px;
+    gap: 2px;
+  }
+  .colors .info .color{
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
 }
 
 
@@ -478,7 +647,8 @@ justify-content: center;
 position: relative;
 flex-grow: 1;
 width: 100%;
-background-color: #0b1d59;
+background-image: radial-gradient( circle farthest-corner at 30% 30%,  rgb(12, 35, 94) 0%, rgb(2, 15, 47) 90%);
+
 color: #e2ddef;
 padding: 20px;
 border-radius: 10px;
@@ -533,10 +703,10 @@ color: #151515;
 grid-column: span 1;
 height: fit-content;
 text-align: center;
-color: #0b1d59;
+color: #024959;
 font-weight: bold;
 font-size: 20px;
-border: 2px #0b1d59 solid;
+border: 2px #024959 solid;
 padding: 8px 10px;
 border-radius: 25px;
 margin-bottom: 5px;
@@ -670,7 +840,7 @@ color: #516664a9;
 position: fixed;
 width: 100%; 
 height: 100vh; 
-z-index: 10; 
+z-index: 500; 
 opacity: 0.9; 
 background: rgba(29, 31, 32, 0.904) radial-gradient(rgba(255, 255, 255, 0.712) 10%, transparent 1%); 
 background-size: 11px 11px;
@@ -822,8 +992,26 @@ z-index: 3;
 .studentForm .studentInput {
 padding: 10px; 
 border-radius: 6px; 
-
 }
+
+.studentPhoneDivDiv{
+  display: flex;
+  width: 65%;
+}
+
+.studentForm .countryCode {
+padding: 10px 5px;
+border-radius: 6px; 
+}
+
+@media (max-width: 425px) {
+  .studentForm .countryCode {
+    font-size: 10px;
+    padding: 10px 4px;
+    max-width: 40%;
+  }
+}
+
 @media (min-width: 481px) {
   .studentForm .studentInputDiv .studentInput {
     width: 65%;
@@ -851,6 +1039,7 @@ border-radius: 6px;
 }
 
 .studentForm .studentInputDiv:nth-child(4) .studentInput,
+.studentForm .studentInputDiv:nth-child(5) .countryCode,
 .studentForm .studentInputDiv:nth-child(7) .studentInput,
 .studentForm .studentInputDiv:nth-child(8) .studentInput,
 .studentForm .studentInputDiv:nth-child(9) .studentInput {
@@ -879,7 +1068,7 @@ bottom: 0;
 right: 0; 
 background-color: #334da0; 
 color: #e2ddef; 
-padding: 4px 12px 8px; 
+padding: 4px 12px 6px; 
 border-radius: 6px; 
 cursor: pointer;
 transition: 0.2s;
@@ -889,17 +1078,16 @@ transition: 0.2s;
 position: absolute; 
 top: 10px; 
 right: 10px; 
-background-color: #777; 
+background-color: #024959; 
 color: #e2ddef; 
 width: 30px;
 height: 30px;
-padding-bottom: 4px;
 display: flex;
 justify-content: center;
 align-items: center;
 border-radius: 50%; 
 cursor: pointer;
-font-size: 22px;
+font-size: 25px;
 transition: 0.2s;
 
 }
@@ -909,7 +1097,7 @@ transition: 0.2s;
 position: fixed; 
 width: 100%; 
 height: 100vh; 
-z-index: 10; 
+z-index: 500; 
 opacity: 0.9; 
 background: rgba(29, 31, 32, 0.904) radial-gradient(rgba(255, 255, 255, 0.712) 10%, transparent 1%); 
 background-size: 11px 11px;
@@ -969,8 +1157,6 @@ transition: 0.2s;
 
 .erorSpan{
 box-sizing: content-box;
-margin-top: 10px;
-padding: 10px;
 color: red;
 }
 
@@ -978,7 +1164,7 @@ color: red;
 position: absolute; 
 top: 10px; 
 right: 10px; 
-background-color: #777; 
+background-color: #024959; 
 color: #e2ddef; 
 border-radius: 50%; 
 cursor: pointer;
@@ -987,8 +1173,6 @@ justify-content: center;
 align-items: center;
 width: 30px;
 height: 30px;
-padding-bottom: 4px;
-font-size: 22px;
 transition: 0.2s;
 }
 
@@ -1061,7 +1245,7 @@ align-items: center;
 width: 20px;
 height: 20px;
 background-color: #121212;
-color: #F99417;
+color: #c9a67b;
 font-size: 16px;
 border-radius: 50%; 
 cursor: pointer;
@@ -1098,7 +1282,7 @@ justify-content: flex-start;
 align-items: center;
 gap: 4px;
 border-radius: 23px;
-border: 2px #0b1d59 solid;
+border: 2px #024959 solid;
 cursor: pointer;
 transition: 0.5s;
 overflow: hidden;
@@ -1126,7 +1310,7 @@ height: 32px;
 }
 
 .btnsAbso > svg path{
-fill: #0b1d59;
+fill: #024959;
 }
 
 
@@ -1144,9 +1328,9 @@ justify-content: center;
 width: 47px;
 height: 47px;
 border-radius: 23.5px;
-background-color: #000;
+background-color: #16232e;
 cursor: pointer;
-border: 2px #0b1d59 solid;
+border: 2px #024959 solid;
 /* border: 3px solid rgb(255, 201, 201); */
 transition: 0.3s;
 display: none;
@@ -1196,8 +1380,8 @@ transition: 0.8s;
 width: 45px;
 height: 45px;
 border-radius: 22px;
-border:  2px solid #000;
-background-color: #000;
+border:  2px solid #024959;
+background-color: #16232e;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -1251,8 +1435,8 @@ box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
 width: 45px;
 height: 45px;
 border-radius: 22px;
-border: 2px solid #000;
-background-color: #000;
+border: 2px solid #024959;
+background-color: #16232e;
 display: flex;
 align-items: center;
 justify-content: center;

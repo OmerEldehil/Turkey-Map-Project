@@ -1,0 +1,357 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-image: url("../images/simple_dashed.png");
+    background-size: 20px;
+}
+.merkez-tipleri{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.merkez{
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 767px) {
+    .merkez{
+        padding: 10px;
+        border-radius: 6px;
+    }
+}
+
+.vakiflar{
+    background-image: radial-gradient( circle farthest-corner at 30% 30%,  #256826 0%, #000400 90% );
+}
+
+.temsilcilikler{
+    background-image: radial-gradient( circle farthest-corner at 30% 30%,  #1b1871 0%, #00000f 90%);
+}
+
+.kulupler{
+    background-image: radial-gradient( circle farthest-corner at 30% 30%,  #5e1871 0%, #10000d 90%);
+}
+
+.merkez h1 {
+    color: #eee;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+    .merkez h1{
+        font-size: 27px;
+    }
+}
+
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+@media (min-width: 1200px) {
+    .info{
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 767px) {
+    .info{
+        flex-direction: row;
+        flex-wrap: wrap;
+        row-gap: 12px;
+    }
+}
+
+.il{
+    overflow: hidden;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.vakiflar .il{
+    background-image: radial-gradient( circle farthest-corner at 10.8% 15.1%,  rgb(65, 41, 24) 0%, rgb(96, 67, 40) 90.1% );
+}
+
+
+.temsilcilikler .il{
+    background-image: radial-gradient( circle farthest-corner at 10.8% 15.1%,  rgb(102, 16, 16) 0%, rgb(109, 39, 39) 90.1% );
+
+}
+
+.kulupler .il{
+    background-image: radial-gradient( circle farthest-corner at 10.8% 15.1%,  rgb(65, 58, 24) 0%, rgb(96, 82, 40) 90.1% );
+}
+
+
+.il .head{
+    height: 45px;
+    width: 100%; 
+    color: #ddd;
+    border-bottom: 4px #ddd solid;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+}
+
+.il > h2{
+    color: #ddd;
+}
+
+.il .head svg{
+    width: 25px;
+}
+
+.il .head svg path{
+    fill: #cccccc;
+}
+
+
+@media (min-width: 1200px) {
+    .il{
+        width: calc(50% - 10px);
+        border-radius: 8px;
+    }
+    .il .head{
+        height: 40px;
+        border-bottom: 3px #ddd solid;
+        padding: 8px 15px;
+    }
+    .il .head h2{
+        font-size: 22px;
+    }
+    .il .head svg{
+        width: 20px;
+    }
+}
+
+@media (max-width: 767px){
+    .il{
+        border-radius: 6px;
+    }
+    .il .head{
+        height: 38px;
+        padding: 8px 15px ;
+        border-bottom: 3px #ddd solid;
+    }
+    .il .head h2{
+        font-size: 20px;
+    }
+    .il .head svg{
+        width: 20px;
+    }
+}
+
+
+/* ----------------Table------------- */
+.il .tableDiv{
+    overflow: auto;
+    min-width: 100%;
+    height: 0;
+    transition: height 0.3s;
+}
+
+.il table{
+    border-spacing: 0;
+    width: 100%;
+    transition: height 0.3s ease-in-out;
+
+}
+
+
+.il table td{
+    background-color: #ddd;
+    border: 1px solid #cccccc;
+    padding: 8px 10px;
+    white-space: nowrap;
+}
+
+.il table thead td{
+    text-align: center;
+    font-weight: 600;
+}
+
+
+.vakiflar .il table thead td {
+    background-color: #b78866;
+    border: 1px solid #9f7354;
+}
+
+.temsilcilikler .il table thead td {
+    background-color: #b76666;
+    border: 1px solid #9f5454;
+}
+
+.kulupler .il table thead td {
+    background-color: #b7a666;
+    border: 1px solid #9f9154;
+}
+
+@media (min-width: 1200px) {
+    .il table td{
+        font-size: 13px;
+        padding: 4px 6px;
+    }
+}
+
+@media (max-width: 992px) {
+    .il table td{
+        font-size: 15px;
+        padding: 6px 8px;
+    }
+}
+
+@media (max-width: 767px) {
+    .il table td{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 620px) {
+    .il table td{
+        font-size: 13px;
+        padding: 5px 7px;
+    }
+}
+
+@media (max-width: 580px) {
+    .il table td{
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+}
+
+@media (max-width: 500px) {
+    .il table td{
+        font-size: 11px;
+        padding: 3px 5px;
+    }
+}
+
+
+.setBtn {
+    margin: 20px 0 0 auto;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    background-size: 100% auto;
+    font-family: inherit;
+    font-size: 17px;
+    padding: 0.6em 1.5em;
+    transition: background-size 0.1s linear;
+}
+/* 
+rgb(37, 104, 38) 
+rgba(27,24,113,1)
+rgb(94, 24, 113)  */
+
+.vakiflar .setBtn {
+    background-image: radial-gradient( circle 200px at 10% 0%,  #256826 0%, #000400 90% );
+}
+
+.vakiflar .setBtn:hover{
+    background-size: 400% auto;
+    -webkit-animation: pulse 2s infinite;
+    animation: pulse512 1.5s infinite;
+}
+
+.temsilcilikler .setBtn {
+    background-image: radial-gradient( circle 200px at 5% 0%,  #1b1871 0%, #00000f 90% );
+}
+
+.temsilcilikler .setBtn:hover{
+    background-size: 800% auto;
+    -webkit-animation: pulse 2s infinite;
+    animation: pulse512 1.5s infinite;
+}
+
+.kulupler .setBtn {
+    background-image: radial-gradient( circle 200px at 2% 0%,  #5e1871 0%, #10000d 90% );
+}
+
+.kulupler .setBtn:hover{
+    background-size: 1000% auto;
+    -webkit-animation: pulse 2s infinite;
+    animation: pulse512 1.5s infinite;
+}
+
+@keyframes pulse512 {
+    0% {
+        box-shadow: 0 0 0 0 #25682666;
+    }
+
+    70% {
+        box-shadow: 0 0 0 12px rgb(218 103 68 / 0%);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+    }
+}
+
+
+.myPromptMainDiv {
+    font-size: 16px;
+    max-height: calc(100vh - 200px);
+    align-items: flex-start;
+}
+
+.myPromptMainDiv .cityForm {
+    width: 100%;
+}
+
+.myPromptMainDiv .cityForm .rows{
+    max-height: 400px;
+    overflow: auto;
+    width: 60%;
+    margin: 0 auto 20px;
+    padding: 10px;
+    background-color: #93a2a5;
+    border-radius: 5px;
+}
+
+.myPromptMainDiv .cityForm .row{
+    border-bottom: 1px solid #eeeeee61;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+    color: #121425;
+    display: flex;
+    gap: 8px;
+}
+
+.myPromptMainDiv .cityForm .row label{
+    width: 100%;
+}
+
+.myPromptMainDiv .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.myPromptMainDiv .formCancle{
+    position: relative;
+}
+
+.myPromptMainDiv .promptClose{
+    background-color: #11053d;
+}
+
+
+
