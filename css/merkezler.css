@@ -308,16 +308,17 @@ rgb(94, 24, 113)  */
 
 .myPromptMainDiv {
     font-size: 16px;
-    max-height: calc(100vh - 200px);
+    max-height: 80vh;
     align-items: flex-start;
 }
 
 .myPromptMainDiv .cityForm {
+    position: relative;
     width: 100%;
 }
 
 .myPromptMainDiv .cityForm .rows{
-    max-height: 400px;
+    max-height: 60vh;
     overflow: auto;
     width: 60%;
     margin: 0 auto 20px;

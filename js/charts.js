@@ -40,7 +40,7 @@ for (var i = 0; i < localStorage.length; i++) {
 
 console.log(allStudents);
 
-const citiesInformation = JSON.parse(sessionStorage.getItem('citiesInformation'));
+const citiesInformation = JSON.parse(localStorage.getItem('citiesInformation'));
 
 console.log(citiesInformation);
 
